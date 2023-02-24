@@ -25,12 +25,11 @@ Route::get('posts/{post}', function ($slug) { // {post} here is a wildcard that 
     }
 
 //    Grabbing a file raw
-//    $post = file_get_contents($path);
+    $post = file_get_contents($path);
 
 //    Grabbing a file and caching for 20minutes
-    $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
+//    $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
 
-    return view('post', [
-        'post' => $post // creating a variable for view with a key value pair
-    ])->where('post', '[A-z_\-]+'); // here we are performing regex on our wildcard to stop crazy things being passed in
-});
+    return view('post', ['post' => $post // creating a variable with a key value pair and passing into a view
+    ]);
+})->where('post', '[A-z_\-]+'); // performing regex on our wildcard (defined after 'get') to stop crazy things being passed in;
