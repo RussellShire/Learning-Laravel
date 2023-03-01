@@ -21,8 +21,9 @@ Route::get('/', function () {
 //      Laravel collect method
         $posts = collect($files)
             ->map(function ($file) {
-                $document = YamlFrontMatter::parseFile($file);
-
+                return YamlFrontMatter::parseFile($file);
+            })
+            ->map(function ($document) {
                 return new Post(
                     $document->title,
                     $document->excerpt,
@@ -31,7 +32,8 @@ Route::get('/', function () {
                     $document->slug
                 );
             });
-//Other options below
+
+        //Other options below
 
 //      Build posts using array map
 //        $posts = array_map(function($file) {
