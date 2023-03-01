@@ -18,17 +18,15 @@ Route::get('/', function () {
 });
 
 Route::get('posts/{post}', function ($slug) { // {post} here is a wildcard that can be passed into the function
-    $path = __DIR__ . "/../resources/posts/{$slug}.html";
-
-    if(! file_exists($path)){
+    if(! file_exists($path = __DIR__ . "/../resources/posts/{$slug}.html")){
         return redirect('/');
     }
 
 //    Grabbing a file raw
-    $post = file_get_contents($path);
+//    $post = file_get_contents($path);
 
 //    Grabbing a file and caching for 20minutes
-//    $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
+    $post = cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
 
     return view('post', ['post' => $post // creating a variable with a key value pair and passing into a view
     ]);
