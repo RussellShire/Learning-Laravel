@@ -45,10 +45,8 @@ class Post
 
     public static function find($slug) // defining find method used in Routes
     {
-        if(! file_exists($path = resource_path("posts/{$slug}.html"))) { // creating a path if a file exists for our Post
-            throw new ModelNotFoundException(); // Throwing an exception if not
-        }
-        //    Returning a file and caching for 20 minutes
-        return cache()->remember("posts.{$slug}", now()->addMinutes(20), fn() => file_get_contents($path));
+        $posts = static::all(); // static is calling the all method from this Class
+
+        return $posts->firstWhere('slug', $slug); // find the first post from the array where the slug on the post object matches the slug passed in as an argument
     }
 }
