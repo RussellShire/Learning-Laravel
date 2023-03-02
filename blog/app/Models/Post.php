@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class Post
 {
@@ -25,9 +26,21 @@ class Post
 
     public static function all()
     {
-        $files = File::files(resource_path("posts/"));
+//      Laravel Collect method example
+        // Using built in File class to get all files from a folder
+        return collect(File::files(resource_path("posts/")))
 
-        return array_map(fn($file) => $file->getContents(), $files);
+        // Map over the files and create an array of YamlFrontMatter objects with metadata
+        ->map(fn($file) => YamlFrontMatter::parseFile($file))
+
+            // Map over the array of Yaml objects and create new Post objects
+            ->map(fn($document) => new Post(
+                $document->title,
+                $document->excerpt,
+                $document->date,
+                $document->body(),
+                $document->slug
+            ));
     }
 
     public static function find($slug) // defining find method used in Routes

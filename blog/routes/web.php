@@ -16,54 +16,8 @@ use \Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-        $files = File::files(resource_path("posts/"));
-
-//      Laravel collect method
-        $posts = collect($files)
-            ->map(function ($file) {
-                return YamlFrontMatter::parseFile($file);
-            })
-            ->map(function ($document) {
-                return new Post(
-                    $document->title,
-                    $document->excerpt,
-                    $document->date,
-                    $document->body(),
-                    $document->slug
-                );
-            });
-
-        //Other options below
-
-//      Build posts using array map
-//        $posts = array_map(function($file) {
-//            $document = YamlFrontMatter::parseFile($file);
-//
-//            return new Post(
-//                $document->title,
-//                $document->excerpt,
-//                $document->date,
-//                $document->body(),
-//                $document->slug
-//            );
-//        }, $files);
-
-//      Building posts using foreach
-//      $posts = [];
-//      foreach ($files as $file) {
-//            $document = YamlFrontMatter::parseFile($file);
-//
-//            $posts[] = new Post(
-//                $document->title,
-//                $document->excerpt,
-//                $document->date,
-//                $document->body(),
-//                $document->slug
-//            );
-//        }
-
     return view('posts', [
-       'posts' => $posts
+       'posts' => Post::all()
     ]);
 });
 
