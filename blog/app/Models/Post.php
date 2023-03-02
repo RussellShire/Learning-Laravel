@@ -26,21 +26,25 @@ class Post
 
     public static function all()
     {
+//        Caching the posts forever so they aren't reloaded everytime the page refreshes, this means extra work is required to add new posts
+        return cache()->rememberForever('posts.all', function () {
 //      Laravel Collect method example
-        // Using built in File class to get all files from a folder
-        return collect(File::files(resource_path("posts/")))
+            // Using built in File class to get all files from a folder
+            return collect(File::files(resource_path("posts/")))
 
-        // Map over the files and create an array of YamlFrontMatter objects with metadata
-        ->map(fn($file) => YamlFrontMatter::parseFile($file))
+                // Map over the files and create an array of YamlFrontMatter objects with metadata
+                ->map(fn($file) => YamlFrontMatter::parseFile($file))
 
-            // Map over the array of Yaml objects and create new Post objects
-            ->map(fn($document) => new Post(
-                $document->title,
-                $document->excerpt,
-                $document->date,
-                $document->body(),
-                $document->slug
-            ));
+                // Map over the array of Yaml objects and create new Post objects
+                ->map(fn($document) => new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug
+                ))
+                ->sortByDesc('date'); // Sorting the collection by a particular value for display
+        });
     }
 
     public static function find($slug) // defining find method used in Routes

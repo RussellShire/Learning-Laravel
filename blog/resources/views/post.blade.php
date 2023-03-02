@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<title>My blog</title>
-<link rel="stylesheet" href="/app.css">
-<body>
+@extends('layout')
+
+@section('content')
     <article>
         <h1>
-            <?= $post->title; ?>
+            {{ $post->title }} {{-- Laravel syntax for passing in a string --}}
         </h1>
         <p>
-            <?= $post->body; ?>
+            {!! $post->body !!} {{-- Laravel syntax for passing in html - potientially dangerous with user supplied content --}}
         </p>
     </article>
     <a href="/">Go back</a>
-</body>
+@endsection
+
