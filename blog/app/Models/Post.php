@@ -23,7 +23,6 @@ class Post
         $this->slug = $slug;
     }
 
-
     public static function all()
     {
 //        Caching the posts forever so they aren't reloaded everytime the page refreshes, this means extra work is required to add new posts
@@ -49,8 +48,18 @@ class Post
 
     public static function find($slug) // defining find method used in Routes
     {
-        $posts = static::all(); // static is calling the all method from this Class
+        return static::all()->firstWhere('slug', $slug); // static is calling the all method from this Class
+    }
 
-        return $posts->firstWhere('slug', $slug); // find the first post from the array where the slug on the post object matches the slug passed in as an argument
+    public static function findOrFail($slug) // defining find method used in Routes
+    {
+        $post = static::find($slug); // static is calling the find method from this Class
+        // where finds the first post from the array where the slug on the post object matches the slug passed in as an argument
+
+        if (!$post){ // checking if a user entered an incorrect slug
+            throw new ModelNotFoundException();
+        }
+
+        return $post;
     }
 }

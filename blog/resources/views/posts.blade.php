@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout> {{-- using the blade component layout.blade from components folder --}}
 {{-- posts is an array of all post files as objects, we loop over and build the homepage --}}
     @foreach ($posts as $post) {{-- Laravel syntax foreach --}}
         <article>
@@ -15,4 +13,4 @@
             </div>
         </article>
     @endforeach
-@endsection
+</x-layout>

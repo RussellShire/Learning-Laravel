@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     <article>
         <h1>
             {{ $post->title }} {{-- Laravel syntax for passing in a string --}}
@@ -10,5 +8,5 @@
         </p>
     </article>
     <a href="/">Go back</a>
-@endsection
+</x-layout>
 

@@ -5,5 +5,5 @@
 {{--<script src="/app.js"></script>--}}
 
 <body>
-    @yield('content')
+    {{ $slot }}  {{-- special blade component variable name "slot" --}}
 </body>
