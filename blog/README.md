@@ -10,7 +10,18 @@
 ## Usage
 
 - start the server
-sail up
+sail up -d
+
+- start the database
+sail mysql -usail -p
+  (check env for password)
+
+- add database data manually
+sail artisan tinker
+  https://laracasts.com/series/laravel-8-from-scratch/episodes/19
+
+- update database tables (and delete data)
+sail artisan migrate:fresh
 
 - localhost port
 80
