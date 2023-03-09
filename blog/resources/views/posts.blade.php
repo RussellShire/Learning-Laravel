@@ -3,7 +3,7 @@
     @foreach ($posts as $post) {{-- Laravel syntax foreach --}}
         <article>
             <h1>
-                <a href="/posts/{{ $post->id }}" > {{-- accessing a value from the Post Class object --}}
+                <a href="/posts/{{ $post->slug }}" > {{-- accessing a value from the Post Class object --}}
                     {{ $post->title }} {{-- blade.php laravel syntax replaces vannilla php "<?= $post->title; ?>" --}}
                 </a>
             </h1>

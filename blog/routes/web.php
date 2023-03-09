@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 // Route Model binding
-Route::get('posts/{post}', function (Post $post) {        // {post} here is a wildcard that gets passed into the function
+Route::get('posts/{post:slug}', function (Post $post) {        // {post} here is a wildcard that gets passed into the function effectively as id, ':slug' grabs one of the attributes on the object
     return view('post', [                               // sending the contents of the post file to the view called post, to be rendered
         'post' => $post                                     // $post = id of the Post Model
     ]);
