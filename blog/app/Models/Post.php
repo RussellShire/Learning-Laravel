@@ -11,5 +11,11 @@ class Post extends Model
 
 //    protected $guarded = ['id']; //
 
-    protected $fillable = ['title', 'excerpt', 'body']; // Allows mass assigning posts with Post::create(['title' => "my third post", etc etc]), array allows what can be mass assigned
+    protected $fillable = ['title', 'category_id', 'slug', 'excerpt', 'body']; // Allows mass assigning posts with Post::create(['title' => "my third post", etc etc]), array allows what can be mass assigned
+
+    public function category()
+    {
+        // Eloquent relationship types: hasOne, hasMany, belongsTo, belongsToMany
+        return $this->belongsTo(Category::class);
+    }
 }
