@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Russell Shire',
         ]);
-        
+
 //          Create five posts with fake data but override user with one I've specified
         Post::factory(5)->create([
             'user_id' => $user->id,

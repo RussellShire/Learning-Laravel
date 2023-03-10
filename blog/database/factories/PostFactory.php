@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'slug' => fake()->slug,
             'excerpt' => fake()->sentence,
             'body' => fake()->paragraph,
+            'published_at' => now(),
         ];
     }
 }
