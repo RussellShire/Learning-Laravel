@@ -18,4 +18,10 @@ class Post extends Model
         // Eloquent relationship types: hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(Category::class);
     }
+
+    public function user()
+    {
+        // Eloquent relationship types: hasOne, hasMany, belongsTo, belongsToMany
+        return $this->belongsTo(User::class);
+    }
 }

@@ -16,6 +16,4 @@
             </div>
         </article>
     @endforeach
-
-
 </x-layout>
