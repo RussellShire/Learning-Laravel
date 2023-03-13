@@ -1,8 +1,9 @@
-{{--{{$isHompage = Request::is('/')}}--}}
 <x-layout> {{-- using the blade component layout.blade from components folder --}}
-
+{{--  Checking for homepage and loading appropriate title  --}}
     @if($isHompage = Request::is('/'))
         <h1>My Blog</h1>
+    @else
+        <h1>{{ ucfirst(Request::segments()[0]) }}</h1>
     @endif
 
     {{-- posts is an array of all post files as objects, we loop over and build the homepage --}}
@@ -25,6 +26,7 @@
         </article>
     @endforeach
 
+{{--  Loading back button on none-homepage  --}}
     @if(!$isHompage)
         <p>
             <a href="/">Homepage</a>
