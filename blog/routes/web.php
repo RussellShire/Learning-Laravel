@@ -19,7 +19,7 @@ use \Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-       'posts' => Post::latest('published_at')->with('category', 'author')->get()     // Querying all posts, then performing category method
+       'posts' => Post::latest('published_at')->with('category', 'author')->get()     // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
     ]);
 });
 
@@ -32,12 +32,12 @@ Route::get('posts/{post:slug}', function (Post $post) {       // {post} here is 
 
 Route::get('category/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts
+        'posts' => $category->posts->load(['category', 'author']) // Eager loading inline to avoid N+1 sql queries
     ]);
 });
 
 Route::get('author/{author:userName}', function (User $author) {
     return view('posts', [
-        'posts' => $author->posts
+        'posts' => $author->posts->load(['category', 'author'])
     ]);
 });
