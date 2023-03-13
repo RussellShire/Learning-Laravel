@@ -7,10 +7,12 @@
                     {{ $post->title }} {{-- blade.php laravel syntax replaces vannilla php "<?= $post->title; ?>" --}}
                 </a>
             </h1>
-            <p>
-                By <a href="/author/{{ $post->author->username }}">{{$post->author->name}}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-            </p>
-
+            <x-display-post-attributes
+                :authorSlug="$post->author->username"
+                :author="$post->author->name"
+                :categorySlug="$post->category->slug"
+                :category="$post->category->name"
+            />
             <div>
                 {{ $post->excerpt }}
             </div>
