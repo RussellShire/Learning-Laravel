@@ -1,5 +1,11 @@
+{{--{{$isHompage = Request::is('/')}}--}}
 <x-layout> {{-- using the blade component layout.blade from components folder --}}
-{{-- posts is an array of all post files as objects, we loop over and build the homepage --}}
+
+    @if($isHompage = Request::is('/'))
+        <h1>My Blog</h1>
+    @endif
+
+    {{-- posts is an array of all post files as objects, we loop over and build the homepage --}}
     @foreach ($posts as $post) {{-- Laravel syntax foreach --}}
         <article>
             <h1>
@@ -18,4 +24,10 @@
             </div>
         </article>
     @endforeach
+
+    @if(!$isHompage)
+        <p>
+            <a href="/">Homepage</a>
+        </p>
+    @endif
 </x-layout>
