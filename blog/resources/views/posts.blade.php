@@ -3,7 +3,8 @@
     @if($isHompage = Request::is('/'))
         @include ('_posts-header')
     @else
-        <h1 class="text-center text-3xl">{{ ucfirst(Request::segments()[0]) }}</h1>
+        <h1 class="text-center text-3xl">{{ ucfirst(Request::segments()[0]) }}</h1> {{-- Bit messy this --}}
+        @include ('_posts-header')
     @endif
 
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">

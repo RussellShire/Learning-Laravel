@@ -4,7 +4,6 @@ use \App\Models\Post;
 use \App\Models\Category;
 use \App\Models\User;
 use Illuminate\Support\Facades\Route;
-use \Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,25 +18,29 @@ use \Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-       'posts' => Post::latest('published_at')->with('category', 'author')->get()     // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
+        'posts' => Post::latest('published_at')->with('category', 'author')->get(), // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
+        'categories' => Category::all(),
     ]);
 });
 
 // Route Model binding
 Route::get('posts/{post:slug}', function (Post $post) {       // {post} here is a wildcard that gets passed into the function effectively as id, ':slug' grabs one of the attributes on the object
     return view('post', [                                   // sending the contents of the post file to the view called post, to be rendered
-        'post' => $post                                         // $post = id of the Post Model
+        'post' => $post,                                        // $post = id of the Post Model
     ]);
 });
 
 Route::get('category/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts->load(['category', 'author']) // Eager loading inline to avoid N+1 sql queries
+        'posts' => $category->posts->load(['category', 'author']), // Eager loading inline to avoid N+1 sql queries
+        'categories' => Category::all(),
+        'currentCategory' => $category,
     ]);
 });
 
 Route::get('author/{author:userName}', function (User $author) {
     return view('posts', [
-        'posts' => $author->posts->load(['category', 'author'])
+        'posts' => $author->posts->load(['category', 'author']),
+        'categories' => Category::all(),
     ]);
 });
