@@ -1,5 +1,8 @@
+@props(['post'])
+
 <article
-    class="transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl">
+{{--  Merging class attributes from the blade template with attributes passed down when the component is used --}}
+    {{ $attributes->merge(['class' => 'transition-colors duration-300 hover:bg-gray-100 border border-black border-opacity-0 hover:border-opacity-5 rounded-xl']) }}>
     <div class="py-6 px-5">
         {{-- TODO --}}
         <div>
@@ -12,8 +15,6 @@
                     <a href="/category/{{ $post->category->slug }}"
                        class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
                        style="font-size: 10px">{{ $post->category->name }}</a>
-
-
                 </div>
 
                 <div class="mt-4">
