@@ -1,52 +1,31 @@
 <x-layout> {{-- using the blade component layout.blade from components folder --}}
-    @include ('_posts-header')
+    {{-- Checking if homepage and loading correct header --}}
+    @if($isHompage = Request::is('/'))
+        @include ('_posts-header')
+    @else
+        <h1 class="text-center text-3xl">{{ ucfirst(Request::segments()[0]) }}</h1>
+    @endif
 
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-        <x-post-featured-card />
+        @if ($posts->count()) {{-- Checking for posts and loading message if none --}}
+            <x-post-featured-card :post="$posts[0]" />
 
-        <div class="lg:grid lg:grid-cols-2">
-            <x-post-card />
-            <x-post-card />
-        </div>
-
-        <div class="lg:grid lg:grid-cols-3">
-            <x-post-card />
-            <x-post-card />
-            <x-post-card />
-        </div>
+            <div class="lg:grid lg:grid-cols-2">
+                @foreach ($posts->skip(1) as $post) {{-- Skip 1 post (because it's being used as featured post, works on collections --}}
+                    <x-post-card :post="$post" />
+                @endforeach
+            </div>
+        @else
+            <p class="text-center">No posts yet, please check back later.</p>
+        @endif
     </main>
 
-    {{--  Checking for homepage and loading appropriate title  --}}
-{{--    @if($isHompage = Request::is('/'))--}}
-{{--        <h1>My Blog</h1>--}}
-{{--    @else--}}
-{{--        <h1>{{ ucfirst(Request::segments()[0]) }}</h1>--}}
-{{--    @endif--}}
-
-{{--    --}}{{-- posts is an array of all post files as objects, we loop over and build the homepage --}}
-{{--    @foreach ($posts as $post) --}}{{-- Laravel syntax foreach --}}
-{{--        <article>--}}
-{{--            <h1>--}}
-{{--                <a href="/posts/{{ $post->slug }}" > --}}{{-- accessing a value from the Post Class object --}}
-{{--                    {{ $post->title }} --}}{{-- blade.php laravel syntax replaces vannilla php "<?= $post->title; ?>" --}}
-{{--                </a>--}}
-{{--            </h1>--}}
-{{--            <x-display-post-attributes--}}
-{{--                :authorSlug="$post->author->username"--}}
-{{--                :author="$post->author->name"--}}
-{{--                :categorySlug="$post->category->slug"--}}
-{{--                :category="$post->category->name"--}}
-{{--            />--}}
-{{--            <div>--}}
-{{--                {{ $post->excerpt }}--}}
-{{--            </div>--}}
-{{--        </article>--}}
-{{--    @endforeach--}}
-
-{{--  Loading back button on none-homepage  --}}
-{{--    @if(!$isHompage)--}}
-{{--        <p>--}}
-{{--            <a href="/">Homepage</a>--}}
-{{--        </p>--}}
-{{--    @endif--}}
+{{--      Loading back button on non-homepage  --}}
+    @if(!$isHompage)
+        <div class="text-center mt-8">
+            <a href="/"
+               class="transition-colors duration-300 font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
+            >Homepage</a>
+        </div>
+    @endif
 </x-layout>
