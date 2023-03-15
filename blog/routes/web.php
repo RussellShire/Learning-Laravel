@@ -21,7 +21,7 @@ Route::get('/', function () {
         'posts' => Post::latest('published_at')->with('category', 'author')->get(), // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
         'categories' => Category::all(),
     ]);
-});
+})->name('home'); // Naming a route
 
 // Route Model binding
 Route::get('posts/{post:slug}', function (Post $post) {       // {post} here is a wildcard that gets passed into the function effectively as id, ':slug' grabs one of the attributes on the object
@@ -36,7 +36,7 @@ Route::get('category/{category:slug}', function (Category $category) {
         'categories' => Category::all(),
         'currentCategory' => $category,
     ]);
-});
+})->name('category'); // Naming a route
 
 Route::get('author/{author:userName}', function (User $author) {
     return view('posts', [
