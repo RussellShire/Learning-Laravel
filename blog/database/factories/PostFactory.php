@@ -22,9 +22,9 @@ class PostFactory extends Factory
             'user_id' => User::factory(), // Creating a user and grabbing an id for the Post user_id
             'category_id' => Category::factory(),
             'title' => fake()->sentence,
-            'slug' => fake()->slug,
-            'excerpt' => fake()->sentence,
-            'body' => fake()->paragraph,
+            'slug' => fake()->unique()->slug,
+            'excerpt' => '<p>' . implode('</p><p>', fake()->paragraphs(2)) . '</p>',
+            'body' => '<p>' . implode('</p><p>', fake()->paragraphs(6)) . '</p>',
             'published_at' => now(),
         ];
     }
