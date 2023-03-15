@@ -17,8 +17,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $posts = Post::latest();
+
+    if(request('search')) {
+        $posts
+            ->where('title', 'like', '%' . request('search') . '%')
+            ->orWhere('body', 'like', '%' . request('search') . '%');
+    }
+
     return view('posts', [
-        'posts' => Post::latest('published_at')->with('category', 'author')->get(), // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
+//        'posts' => $posts->with('category', 'author')->get(), // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
+        'posts' => $posts->get(), // Querying all posts, then Eager loading 'category' and 'author' to avoid n+1 SQL queries
         'categories' => Category::all(),
     ]);
 })->name('home'); // Naming a route
