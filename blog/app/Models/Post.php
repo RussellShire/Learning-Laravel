@@ -24,4 +24,13 @@ class Post extends Model
         // Eloquent relationship types: hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(User::class, 'user_id'); //specifying a different foriegn key
     }
+
+    public function scopeFilter($query) // Creating a query scope, called with Post::filter() (drop the scope)
+    {
+        if(request('search')) {
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+    }
 }
