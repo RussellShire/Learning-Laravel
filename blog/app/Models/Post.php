@@ -10,7 +10,6 @@ class Post extends Model
     use HasFactory;
 
 //    protected $guarded = ['id']; //
-
     protected $fillable = ['title', 'category_id', 'slug', 'excerpt', 'body']; // Allows mass assigning posts with Post::create(['title' => "my third post", etc etc]), array allows what can be mass assigned
 
     public function category()
@@ -25,12 +24,12 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id'); //specifying a different foriegn key
     }
 
-    public function scopeFilter($query) // Creating a query scope, called with Post::filter() (drop the scope)
+    public function scopeFilter($query, array $filters) // Creating a query scope, called with Post::filter() (drop the scope when calling this method)
     {
-        if(request('search')) {
+        if($filters['search'] ?? false) {
             $query
-                ->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('body', 'like', '%' . request('search') . '%');
+                ->where('title', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('body', 'like', '%' . $filters['search'] . '%');
         }
     }
 }
