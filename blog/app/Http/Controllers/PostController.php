@@ -10,14 +10,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('posts', [
+        return view('posts.index', [
             'posts' => Post::latest()->filter(request(['search', 'category']))->get(),               // filter() is a scoped query set on the Post Model
             ]);
     }
 
     public function show(Post $post)
     {
-        return view('post', [   // sending the contents of the post file to the view called post, to be rendered
+        return view('posts.show', [   // sending the contents of the post file to the view called post, to be rendered
             'post' => $post,        // $post = id of the Post Model
         ]);
     }
