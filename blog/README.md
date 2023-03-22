@@ -12,7 +12,7 @@
 - start the server
 sail up -d
 
-- start the database
+- start the database (should happen automatically with sail up -d)
 sail mysql -usail -p
   (check env for password)
 
