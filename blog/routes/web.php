@@ -23,17 +23,8 @@ Route::get('/', [PostController::class, 'index'])                          // Us
 Route::get('posts/{post:slug}', [PostController::class, 'show']);       // {post} here is a wildcard that gets passed into the function effectively as id
                                                                            // ':slug' grabs one of the attributes on the object
 
-Route::get('category/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts->load(['category', 'author']),      // Eager loading inline to avoid n+1 sql queries
-        'categories' => Category::all(),
-        'currentCategory' => $category,
-    ]);
-})->name('category');
-
 Route::get('author/{author:userName}', function (User $author) {
     return view('posts', [
         'posts' => $author->posts->load(['category', 'author']),
-        'categories' => Category::all(),
     ]);
 });

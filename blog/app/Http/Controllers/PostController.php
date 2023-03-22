@@ -11,9 +11,8 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-            'posts' => Post::latest()->filter(request(['search']))->get(),   // filter() is a scoped query set on the Post Model
-            'categories' => Category::all(),                                // request(['search']) is getting the GET request as an array split down by name, search in this case
-        ]);
+            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),               // filter() is a scoped query set on the Post Model
+            ]);
     }
 
     public function show(Post $post)

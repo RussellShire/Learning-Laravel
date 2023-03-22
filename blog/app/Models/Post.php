@@ -26,10 +26,18 @@ class Post extends Model
 
     public function scopeFilter($query, array $filters) // Creating a query scope, called with Post::filter() (drop the scope when calling this method)
     {
-        if($filters['search'] ?? false) {
+    //  Creating a query for words in body or title
+        $query->when($filters['search'] ?? false, function ($query, $search) {
             $query
-                ->where('title', 'like', '%' . $filters['search'] . '%')
-                ->orWhere('body', 'like', '%' . $filters['search'] . '%');
-        }
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%');
+        });
+
+    //  Creating a query for Post category names
+        $query->when($filters['category'] ?? false, // checking if there has been a category search request
+            fn($query, $category) =>
+                $query->whereHas('category', fn($query) =>
+                    $query->where('slug', $category))
+                );
     }
 }
