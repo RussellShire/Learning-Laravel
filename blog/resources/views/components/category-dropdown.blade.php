@@ -14,7 +14,7 @@
 
         @foreach ($categories as $category)
             <x-dropdown-item
-                href="/?category={{ $category->slug }}"
+                href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}" {{-- Getting a query string from the search box, removing the category and appending to the category dropdown to combine searchbox and dropdown --}}
                 :active="request()->is('*' . $category->slug)" {{-- Highlighting the current page in the dropdown menu by checking the url --}}
             >{{ ucwords( $category->name ) }}</x-dropdown-item>
         @endforeach

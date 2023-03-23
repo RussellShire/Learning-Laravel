@@ -24,7 +24,7 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);       // {post
                                                                            // ':slug' grabs one of the attributes on the object
 
 Route::get('author/{author:userName}', function (User $author) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts->load(['category', 'author']),
     ]);
 });
