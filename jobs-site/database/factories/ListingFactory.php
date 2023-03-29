@@ -18,7 +18,7 @@ class ListingFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
-            'tags' => 'laravel, javascript',
+            'tags' => implode(', ', fake()->words(3)), // joining an array into a string using implode
             'company' => fake()->company(),
             'location' => fake()->city(),
             'email' => fake()->unique()->companyEmail(),
