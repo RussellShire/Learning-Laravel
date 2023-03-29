@@ -2,13 +2,13 @@
 
 @section('content')
     <h2>
-        {{ $listing['title'] }}
+        {{ $listing->title }}
     </h2>
     <div class="inline-flex">
-        {!! $listing['tags'] !!}
+        {!! $listing->tags !!}
     </div>
     <p>
-        {{ $listing['description'] }}
+        {{ $listing->description }}
     </p>
 
     <button onclick="location.href='/'" type="button">
