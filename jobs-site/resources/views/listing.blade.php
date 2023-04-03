@@ -1,6 +1,9 @@
 @extends('layout')
 
+
 @section('content')
+    @include('partials._search')
+
     <h2>
         {{ $listing->title }}
     </h2>
@@ -14,4 +17,5 @@
     <button onclick="location.href='/'" type="button">
         Back
     </button>
+
 @endsection
