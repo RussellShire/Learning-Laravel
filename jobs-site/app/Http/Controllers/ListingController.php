@@ -11,7 +11,7 @@ class ListingController extends Controller
         // Get all listings
         return view('listings.index', [
             'heading' => 'Latest Listings',
-            'listings' => Listing::latest()->filter(request(['tag']))->get(),
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get(),
         ]);
     }
 
