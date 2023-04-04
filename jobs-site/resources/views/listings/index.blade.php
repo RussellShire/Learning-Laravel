@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     @include('partials._hero') {{-- pulling in partials blade templates partials is folder, _search is file, '.' joins folder --}}
     @include('partials._search')
 
@@ -13,4 +11,4 @@
             @endforeach
         </div>
     @endif
-@endsection
+</x-layout>
