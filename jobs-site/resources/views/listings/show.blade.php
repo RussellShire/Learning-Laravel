@@ -7,7 +7,7 @@
         <i class="fa-solid fa-arrow-left"></i> Back
     </a>
     <div class="mx-4">
-        <div class="bg-gray-50 border border-gray-200 p-10 rounded">
+        <x-card class="!p-10"> {{-- using '!' to override existing css in the attribute merge --}}
             <div
                 class="flex flex-col items-center justify-center text-center"
             >
@@ -50,7 +50,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </x-card>
     </div>
 
 @endsection
