@@ -15,6 +15,14 @@ use App\Models\Listing;
 |
 */
 
+// All Listings
 Route::get('/', [ListingController::class, 'index']); // Calling a specific method on a Controller
 
+// Create Listing
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Store Listing
+Route::post('/listings', [ListingController::class, 'store']);
+
+// Single Listing (needs to be at the bottom so that /listings/create etc will be caught first
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
