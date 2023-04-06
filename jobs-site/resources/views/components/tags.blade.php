@@ -1,7 +1,8 @@
 @props(['tags'])
 
 @php
-    $tagsArray = explode(", ", $tags);
+    $tagsArray = explode(",", $tags);                // take a comma seperated string and explode into an array
+    $tagsArray = array_map('trim', $tagsArray);     // trim spaces from each element in the array
 @endphp
 <ul class="flex">
     @foreach($tagsArray as $tag)
