@@ -24,5 +24,11 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 // Store Listing
 Route::post('/listings', [ListingController::class, 'store']);
 
+// Edit Listing
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
+
+// Edit listing submit
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
+
 // Single Listing (needs to be at the bottom so that /listings/create etc will be caught first
 Route::get('/listings/{listing}', [ListingController::class, 'show']);

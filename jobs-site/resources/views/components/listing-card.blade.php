@@ -1,18 +1,10 @@
 @props(['listing'])
 
-@php
-    if (!$listing->logo) {
-        $companyLogo = 'images/laravel-logo.png';
-    } else {
-        $companyLogo = 'storage/' . $listing->logo;
-    }
-@endphp
-
 <x-card>
     <div class="flex">
         <img
             class="hidden w-48 mr-6 md:block"
-            src={{asset($companyLogo)}}
+            src={{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/laravel-logo.png')}} {{-- using a ternary to load a default if no image is uploaded --}}
             alt="{{ $listing->company }}"
         />
         <div>

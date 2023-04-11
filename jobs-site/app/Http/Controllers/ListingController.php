@@ -28,6 +28,37 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
+    // Show edit form
+    public function edit(Listing $listing) {
+        return view('listings.edit', [
+            'listing' => $listing
+        ]);
+    }
+
+    // Update listing data
+    public function update(Request $request, Listing $listing) {
+        $formFields = $request->validate([     // take the request and add validation
+            'title' => 'required',
+            'company' => 'required',
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            // TO-DO add validation for tags to only allow commas and whitespace
+            'tags' => 'required',
+            'description' => 'required',
+        ]);
+
+        // Storing a logo image file at 'storage/app/pubic/logos'
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $listing->update($formFields);
+
+        return redirect('/listings/' . $listing->id)
+            ->with('message', 'Listing updated successfully!'); // Creates a message that can be passed to a component
+    }
+
     // Store create form data
     public function store(Request $request) {
 //        dd($request->file('logo'));
@@ -52,4 +83,6 @@ class ListingController extends Controller
         return redirect('/')
             ->with('message', 'Listing created successfully!'); // Creates a message that can be passed to a component
     }
+
+
 }
