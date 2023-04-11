@@ -12,6 +12,7 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
     />
+    <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,6 +25,7 @@
             },
         };
     </script>
+
     <title>Laravel Jobs</title>
 </head>
 
