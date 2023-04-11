@@ -42,6 +42,11 @@ class ListingController extends Controller
             'description' => 'required',
         ]);
 
+        // Storing a logo image file at 'storage/app/pubic/logos'
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
         Listing::create($formFields); // actually submit to the database
 
         return redirect('/')
