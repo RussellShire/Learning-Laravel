@@ -1,11 +1,19 @@
 @props(['listing'])
 
+@php
+    if (!$listing->logo) {
+        $companyLogo = 'images/laravel-logo.png';
+    } else {
+        $companyLogo = 'storage/' . $listing->logo;
+    }
+@endphp
+
 <x-card>
     <div class="flex">
         <img
             class="hidden w-48 mr-6 md:block"
-            src={{asset('storage/app/public/' . $listing->logo)}}
-                            alt="{{ $listing->company }}"
+            src={{asset($companyLogo)}}
+            alt="{{ $listing->company }}"
         />
         <div>
             <h3 class="text-2xl">
