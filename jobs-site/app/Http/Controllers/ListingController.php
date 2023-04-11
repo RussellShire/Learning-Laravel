@@ -30,7 +30,7 @@ class ListingController extends Controller
 
     // Store create form data
     public function store(Request $request) {
-//        dd($request->all());
+//        dd($request->file('logo'));
         $formFields = $request->validate([     // take the request and add validation
             'title' => 'required',
             'company' => ['required', Rule::unique('listings', 'company')],
