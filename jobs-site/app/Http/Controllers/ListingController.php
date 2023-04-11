@@ -37,12 +37,14 @@ class ListingController extends Controller
             'location' => 'required',
             'website' => 'required',
             'email' => ['required', 'email'],
+            // TO-DO add validation for tags to only allow commas and whitespace
             'tags' => 'required',
             'description' => 'required',
         ]);
 
         Listing::create($formFields); // actually submit to the database
 
-        return redirect('/');
+        return redirect('/')
+            ->with('message', 'Listing created successfully!'); // Creates a message that can be passed to a component
     }
 }
