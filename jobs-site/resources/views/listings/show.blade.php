@@ -37,7 +37,7 @@
                         </a>
 
                         <a
-                            href="{{ $listing->website }}"
+                            href="{{ strpos($listing->website, "http") === 0 ? $listing->website : 'http://' . $listing->website}}"
                             target="_blank"
                             class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
                         >
@@ -49,10 +49,12 @@
             </div>
         </x-card>
 
-        <x-card class="mt-4 p-2 flex space-x-6">
-            <a href="/listings/{{$listing->id}}/edit">
-                <i class="fa-solid fa-pencil"></i> Edit {{-- 'fa' = font awesome logo from the CDN on the template --}}
-            </a>
-        </x-card>
+        <a href="/listings/{{$listing->id}}/edit">
+            <x-card class="mt-4 p-2 flex space-x-6">
+                <div class="mx-auto">
+                    <i class="fa-solid fa-pencil"></i> Edit
+                </div>
+            </x-card>
+        </a>
     </div>
 </x-layout>
