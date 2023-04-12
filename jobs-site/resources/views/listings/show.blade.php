@@ -49,12 +49,21 @@
             </div>
         </x-card>
 
-        <a href="/listings/{{$listing->id}}/edit">
+
             <x-card class="mt-4 p-2 flex space-x-6">
-                <div class="mx-auto">
+                {{-- EDIT listing --}}
+                <a href="/listings/{{$listing->id}}/edit">
                     <i class="fa-solid fa-pencil"></i> Edit
-                </div>
+                </a>
+
+                {{-- DELETE listing --}}
+                <form method="POST" action="/listings/{{ $listing->id }}">
+                    @csrf
+                    @method('DELETE')
+
+                    <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
+                </form>
             </x-card>
-        </a>
+
     </div>
 </x-layout>

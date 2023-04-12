@@ -30,5 +30,8 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 // Edit listing submit
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
+// Delete listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
 // Single Listing (needs to be at the bottom so that /listings/create etc will be caught first
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
