@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/'; // Renaming from '/home' so that the authentication middleware can redirect 'guest'
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
