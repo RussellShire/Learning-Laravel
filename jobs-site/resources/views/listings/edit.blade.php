@@ -23,7 +23,7 @@
                     value="{{$listing->company}}" {{-- keeps data if there is a validation error --}}
                 />
                 @error('company')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -39,7 +39,7 @@
                     value="{{$listing->title}}"
                 />
                 @error('title')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -56,7 +56,7 @@
                     value="{{$listing->location}}"
                 />
                 @error('location')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -70,7 +70,7 @@
                     value="{{$listing->email}}"
                 />
                 @error('email')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -86,7 +86,7 @@
                     value="{{$listing->website}}"
                 />
                 @error('website')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -102,7 +102,7 @@
                     value="{{$listing->tags}}"
                 />
                 @error('tags')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -121,7 +121,7 @@
                     alt="{{ $listing->company }}"
                 />
                 @error('logo')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -136,7 +136,7 @@
                     rows="10"
                     placeholder="Include tasks, requirements, salary, etc">{{$listing->description}}</textarea>
                 @error('description')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
