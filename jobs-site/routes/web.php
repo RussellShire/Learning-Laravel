@@ -19,8 +19,9 @@ use App\Models\Listing;
 // All Listings
 Route::get('/', [ListingController::class, 'index']); // Calling a specific method on a Controller
 
-// Create Listing
-Route::get('/listings/create', [ListingController::class, 'create']);
+// Show Create Listing Form
+Route::get('/listings/create', [ListingController::class, 'create'])
+    ->middleware('auth'); // ensures only logged-in users can access this route
 
 // Store Listing
 Route::post('/listings', [ListingController::class, 'store']);
@@ -47,7 +48,8 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // Show login form
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])
+    ->name('login'); // Naming a route so that authentication middleware can access it and redirect
 
 // Log in user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
