@@ -78,6 +78,9 @@ class ListingController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        // Adding the id of the logged-in user to the Listing
+        $formFields['user_id'] = auth()->id();
+
         Listing::create($formFields); // actually submit to the database
 
         return redirect('/')
