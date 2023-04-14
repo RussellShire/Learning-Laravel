@@ -48,22 +48,19 @@
                 </div>
             </div>
         </x-card>
+{{--            <x-card class="mt-4 p-2 flex space-x-6">--}}
+{{--                --}}{{-- EDIT listing --}}
+{{--                <a href="/listings/{{$listing->id}}/edit">--}}
+{{--                    <i class="fa-solid fa-pencil"></i> Edit--}}
+{{--                </a>--}}
 
+{{--                --}}{{-- DELETE listing --}}
+{{--                <form method="POST" action="/listings/{{ $listing->id }}">--}}
+{{--                    @csrf--}}
+{{--                    @method('DELETE')--}}
 
-            <x-card class="mt-4 p-2 flex space-x-6">
-                {{-- EDIT listing --}}
-                <a href="/listings/{{$listing->id}}/edit">
-                    <i class="fa-solid fa-pencil"></i> Edit
-                </a>
-
-                {{-- DELETE listing --}}
-                <form method="POST" action="/listings/{{ $listing->id }}">
-                    @csrf
-                    @method('DELETE')
-
-                    <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>
-                </form>
-            </x-card>
-
+{{--                    <button class="text-red-500"><i class="fa-solid fa-trash"></i> Delete</button>--}}
+{{--                </form>--}}
+{{--            </x-card>--}}
     </div>
 </x-layout>

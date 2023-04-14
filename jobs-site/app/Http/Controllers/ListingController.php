@@ -44,6 +44,12 @@ class ListingController extends Controller
 
     // Update listing data
     public function update(Request $request, Listing $listing) {
+
+        // Check logged-in user is listing owner
+        if($listing->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
         $formFields = $request->validate([     // take the request and add validation
             'title' => 'required',
             'company' => 'required',
@@ -94,10 +100,15 @@ class ListingController extends Controller
             ->with('message', 'Listing created successfully!'); // Creates a message that can be passed to a component
     }
 
-    // Delete listing
+     // Delete listing
      public function destroy(Listing $listing) {
-        $listing->delete();
+         // Check logged-in user is listing owner
+         if($listing->user_id != auth()->id()){
+             abort(403, 'Unauthorized Action');
+         }
 
-        return redirect('/')->with('message', 'Listing deleted successfully');
-     }
+         $listing->delete();
+
+         return redirect('/')->with('message', 'Listing deleted successfully');
+    }
 }
