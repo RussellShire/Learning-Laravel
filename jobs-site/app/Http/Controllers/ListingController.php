@@ -35,6 +35,12 @@ class ListingController extends Controller
         ]);
     }
 
+    // Show manage form
+    public function manage() {
+        return view('listings.manage',
+            ['listings' => auth()->user()->listings()->get()]); // Get all the logged-in users listings (via eloquent relationships).;
+    }
+
     // Update listing data
     public function update(Request $request, Listing $listing) {
         $formFields = $request->validate([     // take the request and add validation
@@ -93,6 +99,4 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Listing deleted successfully');
      }
-
-
 }

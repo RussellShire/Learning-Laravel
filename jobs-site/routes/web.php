@@ -39,8 +39,9 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])
     ->middleware('auth');
 
-// Single Listing (needs to be at the bottom so that /listings/create etc will be caught first
-Route::get('/listings/{listing}', [ListingController::class, 'show']);
+// Show Manage Listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])
+    ->middleware('auth');
 
 // Show register create form
 Route::get('/register', [UserController::class, 'create'])
@@ -61,4 +62,8 @@ Route::get('/login', [UserController::class, 'login'])
 
 // Log in user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Single Listing (needs to be at the bottom so that /listings/create etc will be caught first
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
 
