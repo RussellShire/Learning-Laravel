@@ -38,7 +38,8 @@ class ListingController extends Controller
     // Show manage form
     public function manage() {
         return view('listings.manage',
-            ['listings' => auth()->user()->listings()->get()]); // Get all the logged-in users listings (via eloquent relationships).;
+            ['listings' => auth()->user()->listings()->get() // Get all the logged-in users listings (via eloquent relationships)
+        ]);
     }
 
     // Update listing data
