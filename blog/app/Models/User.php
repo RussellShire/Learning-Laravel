@@ -43,6 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Eloquent Mutator for password hashing
+    public function setPasswordAttribute($password) // Specific naming convention to create the mutator set[attribute]Attribute
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function posts() // User has many posts
     {
         return $this->hasMany(Post::class);

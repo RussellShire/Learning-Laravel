@@ -23,7 +23,8 @@ class RegisterController extends Controller
         ]);
 
         // Hash password
-        $attributes['password'] = bcrypt($attributes['password']);
+        // NOTE: Moved to user model under setPasswordAttribute Eloquent Mutator.
+//        $attributes['password'] = bcrypt($attributes['password']);
 
         // Save user to database
         $user = User::create($attributes);
