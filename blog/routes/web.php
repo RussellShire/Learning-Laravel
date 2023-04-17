@@ -4,6 +4,7 @@ use \App\Models\Post;
 use \App\Models\Category;
 use \App\Models\User;
 use \App\Http\Controllers\PostController;
+use \App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,5 @@ Route::get('author/{author:userName}', function (User $author) {
         'posts' => $author->posts->load(['category', 'author']),
     ]);
 });
+
+Route::get('register', [RegisterController::class, 'create']);

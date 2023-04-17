@@ -10,11 +10,11 @@
         </x-slot>
 
         {{-- Slot here --}}
-        <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item> {{-- Checking if route is home and highlighting All if so --}}
+        <x-dropdown-item href="/?{{ http_build_query(request()->except('category', 'page')) }}" :active="request()->routeIs('home')">All</x-dropdown-item> {{-- Checking if route is home and highlighting All if so --}}
 
         @foreach ($categories as $category)
             <x-dropdown-item
-                href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}" {{-- Getting a query string from the search box, removing the category and appending to the category dropdown to combine searchbox and dropdown --}}
+                href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category', 'page')) }}" {{-- Getting a query string from the search box, removing the category and appending to the category dropdown to combine searchbox and dropdown --}}
                 :active="request()->is('*' . $category->slug)" {{-- Highlighting the current page in the dropdown menu by checking the url --}}
             >{{ ucwords( $category->name ) }}</x-dropdown-item>
         @endforeach

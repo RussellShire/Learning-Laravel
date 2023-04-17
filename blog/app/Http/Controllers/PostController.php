@@ -13,7 +13,7 @@ class PostController extends Controller
         return view('posts.index', [
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author']) // filter() is a scoped query set on the Post Model
-            )->paginate(6),                               // using 'paginate' instead of 'get'
+            )->paginate(6)->withQueryString(),           // using 'paginate' instead of 'get'
             ]);
     }
 

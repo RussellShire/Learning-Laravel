@@ -1,3 +1,10 @@
+# LEARNING LARAVEL - LARACASTS - Laravel 8 From Scratch
+
+Following Laracasts, Laravel 8 from scratch and building a blog as my first introduction to Laravel
+https://laracasts.com/series/laravel-8-from-scratch/
+
+Using Docker and Laravel Sail as my dev environment and MySQL with TablePlus to manage backend.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -13,8 +20,14 @@
 sail up -d
 
 - start the database (should happen automatically with sail up -d)
-sail mysql -usail -p
+sail mysql -u<username> -p
   (check env for password)
+
+- intialise the database
+sail artisan migrate
+
+-fix SQLSTATE[HY000] [2002] No such file or directory issue
+sail composer update
 
 - add database data manually
 sail artisan tinker
