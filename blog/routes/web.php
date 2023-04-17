@@ -30,4 +30,8 @@ Route::get('author/{author:userName}', function (User $author) {
     ]);
 });
 
+// Show Register user form
 Route::get('register', [RegisterController::class, 'create']);
+
+// Store Register user form
+Route::post('register', [RegisterController::class, 'store']);
