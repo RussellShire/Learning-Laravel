@@ -43,7 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Eloquent Mutator for password hashing
+    // Eloquent Mutator for password hashing into the database
+    // Note get[attribute]Attribute can be used for mutating data when requested from the database (for example making names uppercase)
     public function setPasswordAttribute($password) // Specific naming convention to create the mutator set[attribute]Attribute
     {
         $this->attributes['password'] = bcrypt($password);
