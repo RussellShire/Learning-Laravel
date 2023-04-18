@@ -31,14 +31,15 @@ class RegisterController extends Controller
         $user = User::create($attributes);
 
         // Feedback to user with flash message
-        session()->flash('success', 'Your account has been created');
+        // NOTE: superceeded by '->with([...])' on redirect, keeping for reference
+//        session()->flash('success', 'Your account has been created');
 
         // Log user in
 //        auth()->login($user);
-        
+
 
         // Redirect to homepage
-        return redirect('/');
+        return redirect('/')->with('success', 'Your account has been created!');
 
     }
 }
