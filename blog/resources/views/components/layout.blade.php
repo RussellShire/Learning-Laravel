@@ -17,7 +17,8 @@
 
             <div class="mt-8 md:mt-0 flex items-center gap-2">
                 @guest
-                    <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                    <a href="/register" class="font-bold uppercase">Register</a>
+                    <a href="/login" class="font-bold uppercase ml-5">Log In</a>
                 @else
                     <span class="font-bold">Welcome, {{ ucwords(auth()->user()->name) }}!</span>
 

@@ -35,8 +35,20 @@ Route::get('register', [RegisterController::class, 'create'])
 Route::post('register', [RegisterController::class, 'store'])
     ->middleware('guest');
 
+// User log in
+Route::get('login', [SessionsController::class, 'create'])
+    ->middleware('guest'); // Only guests can log in
+
+// Authenticate user login
+Route::post('login/authenticate', [SessionsController::class, 'store']);
+
 // User log out
-Route::post('logout', [SessionsController::class, 'destroy']);
+Route::post('logout', [SessionsController::class, 'destroy'])
+    ->middleware('auth'); // Only logged in people can log out
+
+
+
+
 
 // NOTE: This is replaced by the scope filter on the Post Model
 // Leaving as an example of filtering
