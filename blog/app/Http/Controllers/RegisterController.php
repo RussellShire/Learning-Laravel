@@ -17,9 +17,9 @@ class RegisterController extends Controller
     public function store() {
         // Build user from POST request
         $attributes = request()->validate([
-            'name' => 'required|max:255', // 'max:255' is a guard against informaiton longer than an SQL databases' varchar
-            'username' => 'required|min:3|max:255|unique:users,username', // unique:[table],[column] on the database
-            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')], // Alternative syntax for validation (requires importing 'Rule')
+            'name' => 'required|max:255',   // 'max:255' is a guard against informaiton longer than an SQL databases' varchar
+            'username' => 'required|min:3|max:255|unique:users,username',   // unique:[table],[column] on the database
+            'email' => ['required', 'email', 'max:255', Rule::unique('users', 'email')],    // Example of alternative syntax for validation (requires importing 'Rule')
             'password' => 'required|confirmed|min:7|max:255',
         ]);
 
@@ -30,8 +30,12 @@ class RegisterController extends Controller
         // Save user to database
         $user = User::create($attributes);
 
+        // Feedback to user with flash message
+        session()->flash('success', 'Your account has been created');
+
         // Log user in
 //        auth()->login($user);
+        
 
         // Redirect to homepage
         return redirect('/');
