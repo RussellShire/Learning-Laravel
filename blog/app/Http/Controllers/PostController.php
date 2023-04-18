@@ -12,15 +12,15 @@ class PostController extends Controller
     {
         return view('posts.index', [
             'posts' => Post::latest()->filter(
-                request(['search', 'category', 'author']) // filter() is a scoped query set on the Post Model
-            )->paginate(6)->withQueryString(),           // using 'paginate' instead of 'get'
-            ]);
+                request(['search', 'category', 'author'])   // filter() is a scoped query set on the Post Model
+            )->paginate(6)->withQueryString(),             // using 'paginate' instead of 'get'
+            ]);                                           // withQueryString() means queries can be combined
     }
 
     public function show(Post $post)
     {
-        return view('posts.show', [     // sending the contents of the post file to the view called post, to be rendered
-            'post' => $post,                // $post = id of the Post Model
+        return view('posts.show', [             // sending the contents of the post file to the view called post, to be rendered
+            'post' => $post,                        // $post = id of the Post Model
         ]);
     }
 }
