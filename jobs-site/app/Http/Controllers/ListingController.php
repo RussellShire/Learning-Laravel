@@ -8,7 +8,8 @@ use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         // Get all listings
         return view('listings.index', [
             'heading' => 'Latest Listings',
@@ -16,7 +17,8 @@ class ListingController extends Controller
         ]);
     }
 
-    public function show(Listing $listing) { // Route Model binding
+    public function show(Listing $listing) // Route Model binding
+    {
         // Show one listing
         return view('listings.show', [
             'listing' => $listing
@@ -24,26 +26,30 @@ class ListingController extends Controller
     }
 
     // Show create form
-    public function create() {
+    public function create()
+    {
         return view('listings.create');
     }
 
     // Show edit form
-    public function edit(Listing $listing) {
+    public function edit(Listing $listing)
+    {
         return view('listings.edit', [
             'listing' => $listing
         ]);
     }
 
     // Show manage form
-    public function manage() {
+    public function manage()
+    {
         return view('listings.manage',
             ['listings' => auth()->user()->listings()->get() // Get all the logged-in users listings (via eloquent relationships)
         ]);
     }
 
     // Update listing data
-    public function update(Request $request, Listing $listing) {
+    public function update(Request $request, Listing $listing)
+    {
 
         // Check logged-in user is listing owner
         if($listing->user_id != auth()->id()){
@@ -73,7 +79,8 @@ class ListingController extends Controller
     }
 
     // Store create form data
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 //        dd($request->file('logo'));
         $formFields = $request->validate([     // take the request and add validation
             'title' => 'required',
@@ -101,7 +108,8 @@ class ListingController extends Controller
     }
 
      // Delete listing
-     public function destroy(Listing $listing) {
+     public function destroy(Listing $listing)
+     {
          // Check logged-in user is listing owner
          if($listing->user_id != auth()->id()){
              abort(403, 'Unauthorized Action');

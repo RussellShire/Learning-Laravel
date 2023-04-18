@@ -34,7 +34,8 @@ class UserController extends Controller
     }
 
     // Logout
-    public function logout(Request $request){
+    public function logout(Request $request)
+    {
         auth()->logout(); // Logout
 
         $request->session()->invalidate(); // Invalidate session
@@ -44,13 +45,14 @@ class UserController extends Controller
     }
 
     // Show login form
-    public function login() {
+    public function login()
+    {
         return view('users.login');
     }
 
     // Authenticate user login
-    public function authenticate(Request $request) {
-
+    public function authenticate(Request $request)
+    {
         $formFields = $request->validate([
             'email' => ['required', 'email'],
             'password' => 'required',

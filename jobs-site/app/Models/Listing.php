@@ -11,7 +11,8 @@ class Listing extends Model
 
     protected $fillable = ['title', 'user_id', 'company', 'location', 'website', 'email', 'tags', 'description', 'logo'];
 
-    public function scopeFilter($query, array $filters) {
+    public function scopeFilter($query, array $filters)
+    {
         if($filters['tag'] ?? false){
             $query->where('tags', 'like', '%' . request('tag') . '%'); // concat '%' means that it allows characters before and after
         };
@@ -24,7 +25,8 @@ class Listing extends Model
     }
 
     // Relationship to user
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 }
