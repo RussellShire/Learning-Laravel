@@ -9,6 +9,13 @@ Following Laracasts: https://laracasts.com/series/laravel-vue-and-spas/
 - npm install
 - npm install vue
 - npm install vue-router
+- composer require laravel/sail --dev
+- php artisan sail:install
+
+## Usage
+
+-npm run watch
+-./vendor/bin/sail up OR sail up -d
 
 ## About Laravel
 
