@@ -1,9 +1,14 @@
+# Laravel and Vue SPA
+
+A single page application with a Laravel backend and Vue / Vue Router frontend.
+
+Following Laracasts: https://laracasts.com/series/laravel-vue-and-spas/
+
 ## Set up
 
 - npm install
 - npm install vue
 - npm install vue-router
-
 
 ## About Laravel
 
