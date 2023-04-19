@@ -12,13 +12,16 @@ with this set-up guide for 2022: https://blog.logrocket.com/create-single-page-a
 - npm install vue-router
 - composer require laravel/sail --dev
 - php artisan sail:install
+- npm install -D tailwindcss postcss autoprefixer
+- npx tailwindcss init -p
 
 [//]: # (- npm install axios)
 
 ## Usage
 
--npm run dev
--./vendor/bin/sail up OR sail up -d
+- npm run dev
+- ./vendor/bin/sail up -d 
+- OR sail up -d
 
 ## About Laravel
 

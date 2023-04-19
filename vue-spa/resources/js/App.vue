@@ -4,7 +4,7 @@
         <router-link :to="{name: 'about'}">About</router-link> <!--using a named route note ':' before 'to' so it's dynamic-->
     </div>
 
-    
+
     <router-view />
 </template>
 
@@ -15,3 +15,7 @@ export default {
     }
 }
 </script>
+
+<style>
+@import "../css/app.css";
+</style>
