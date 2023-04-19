@@ -1,14 +1,7 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './routes';
 
-import routes from './routes';
-
-// Adding Vue Router as a plugin
-Vue.use(VueRouter);
-
-const app = new Vue({
-    el: '#app',
-
-    router: new VueRouter(routes) // 'routes' imported above
-});
-
+const app = createApp(App)
+app.use(router)
+app.mount('#app')

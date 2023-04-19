@@ -1,5 +1,6 @@
 <template>
-    <p>Home</p>
+    <h1>Home</h1>
+    <p>This is a home route</p>
 </template>
 
 <script>

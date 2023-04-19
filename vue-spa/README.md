@@ -3,18 +3,21 @@
 A single page application with a Laravel backend and Vue / Vue Router frontend.
 
 Following Laracasts: https://laracasts.com/series/laravel-vue-and-spas/
+with this set-up guide for 2022: https://blog.logrocket.com/create-single-page-app-laravel-and-vue/
 
 ## Set up
 
 - npm install
-- npm install vue
+- npm install vue@next vue-loader@next @vitejs/plugin-vue
 - npm install vue-router
 - composer require laravel/sail --dev
 - php artisan sail:install
 
+[//]: # (- npm install axios)
+
 ## Usage
 
--npm run watch
+-npm run dev
 -./vendor/bin/sail up OR sail up -d
 
 ## About Laravel
