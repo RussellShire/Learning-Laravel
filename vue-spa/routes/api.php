@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Image;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,11 @@ Route::get('users', function() {
 
     return $users;
 });
+
+Route::get('images', function() {
+    $images = Image::all();
+    return $images;
+});
+
+//Route::get('images', fn() => Image::all());
+
