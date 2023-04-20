@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,10 @@ Route::get('example', function() {
         'dataOne' => 1,
         'dataTwo' => 201,
     ];
+});
+
+Route::get('users', function() {
+    $users = User::all();
+
+    return $users;
 });
