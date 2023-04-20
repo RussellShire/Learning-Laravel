@@ -4,12 +4,10 @@
     <h1 class="text-xl text-red-500">Image List</h1>
     <p class="text-red-500">This is a list of imagery dynamically pulled from the database</p>
 
-    <ul>
-        <template v-for="(image, index) in rawData" :key="index">
+    <ul v-for="(image, index) in images" :key="index">
             <li>
                 <image-card :image="image" />
             </li>
-        </template>
     </ul>
 
 </template>
@@ -23,7 +21,7 @@ export default {
 
     data() {
         return {
-            rawData: '',
+            images: '',
         }
     },
 
@@ -32,7 +30,7 @@ export default {
             const results = await fetch('/api/images')
             const data = await results.json()
 
-            this.rawData = data
+            this.images = data
         }
 
         fetchTestData()
