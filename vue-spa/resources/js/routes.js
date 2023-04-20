@@ -1,8 +1,8 @@
-import Home from './component/Home.vue';
-import About from './component/About.vue';
-import ApiExample from "./component/ApiExample.vue";
-import UserList from "./component/UserList.vue";
-import ImageList from "./component/ImageList.vue";
+import Home from './component/views/Home.vue';
+import About from './component/views/About.vue';
+import ApiExample from "./component/views/ApiExample.vue";
+import UserList from "./component/views/UserList.vue";
+import ImageList from "./component/views/ImageList.vue";
 
 import {createRouter, createWebHashHistory} from "vue-router";
 

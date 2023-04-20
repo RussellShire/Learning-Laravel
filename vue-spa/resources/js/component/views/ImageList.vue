@@ -1,12 +1,13 @@
+
+
 <template>
-    <h1 class="text-xl">Image List</h1>
-    <p>This is a list of imagery dynamically pulled from the database</p>
+    <h1 class="text-xl text-red-500">Image List</h1>
+    <p class="text-red-500">This is a list of imagery dynamically pulled from the database</p>
 
     <ul>
         <template v-for="(image, index) in rawData" :key="index">
             <li>
-                <img :src="image['image_path']" :alt="image['title']">
-                {{ image['title'] }}
+                <image-card :image="image" />
             </li>
         </template>
     </ul>
@@ -14,7 +15,12 @@
 </template>
 
 <script>
+import ImageCard from '../ImageCard.vue';
 export default {
+    components: {
+        ImageCard
+    },
+
     data() {
         return {
             rawData: '',
@@ -30,6 +36,6 @@ export default {
         }
 
         fetchTestData()
-    }
+    },
 };
 </script>
