@@ -34,13 +34,14 @@ Route::get('users', function() {
 });
 
 Route::get('images', function() {
-    $images = Image::all();
+    $images = Image::with('user')->get();
+
     return $images;
 });
 
-Route::get('user/{image}', function(Image $image) {
-   $user = $image->user;
-
-   return $user;
-});
+//Route::get('user/{image}', function(Image $image) {
+//    $user = $image->user;
+//
+//   return $user;
+//});
 

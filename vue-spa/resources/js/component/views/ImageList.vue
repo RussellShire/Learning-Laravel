@@ -29,7 +29,7 @@ export default {
         const fetchTestData = async () => {
             const results = await fetch('/api/images')
             const data = await results.json()
-
+            console.log(data)
             this.images = data
         }
 

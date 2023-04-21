@@ -21,7 +21,7 @@ export default {
         const fetchTestData = async () => {
             const results = await fetch('/api/users')
             const data = await results.json()
-            console.log(data);
+
             this.users = data
         }
 
