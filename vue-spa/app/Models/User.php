@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Eloquent relationship with Image model
+    public function listings()
+    {
+        return $this->hasMany(Image::class, 'user_id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class ImageFactory extends Factory
         return [
             'image_path' => fake()->imageUrl(),
             'title' => fake()->word(),
+            'user_id' => User::factory(),
         ];
     }
 }

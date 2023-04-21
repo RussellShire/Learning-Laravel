@@ -5,8 +5,11 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="">
         <img :src="image['image_path']" :alt="image['title']">
-        <h2>{{ image['title'] }}</h2>
+        <div class="flex">
+            <h2 class="text-xl"><strong>Title:</strong> {{ image['title'] }}</h2>
+            <h2 class="text-xl"><strong>Posted by:</strong> {{ image['user_id'] }}</h2>
+        </div>
     </div>
 </template>

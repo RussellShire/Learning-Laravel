@@ -38,5 +38,7 @@ Route::get('images', function() {
     return $images;
 });
 
-//Route::get('images', fn() => Image::all());
+Route::get('user/{user_id}', function($user_id) {
+   $user = User::get()
+});
 

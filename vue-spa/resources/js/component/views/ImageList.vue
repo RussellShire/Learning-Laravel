@@ -2,12 +2,12 @@
 
 <template>
     <h1 class="text-xl text-red-500">Image List</h1>
-    <p class="text-red-500">This is a list of imagery dynamically pulled from the database</p>
+    <p class="text-xs">This is a list of imagery dynamically pulled from the database</p>
 
     <ul v-for="(image, index) in images" :key="index">
-            <li>
-                <image-card :image="image" />
-            </li>
+        <li>
+            <image-card :image="image" />
+        </li>
     </ul>
 
 </template>
