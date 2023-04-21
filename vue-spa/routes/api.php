@@ -38,7 +38,9 @@ Route::get('images', function() {
     return $images;
 });
 
-Route::get('user/{user_id}', function($user_id) {
-   $user = User::get()
+Route::get('user/{image}', function(Image $image) {
+   $user = $image->user;
+
+   return $user;
 });
 
