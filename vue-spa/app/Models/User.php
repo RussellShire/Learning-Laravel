@@ -43,8 +43,13 @@ class User extends Authenticatable
     ];
 
     // Eloquent relationship with Image model
-    public function listings()
+    public function image()
     {
-        return $this->hasMany(Image::class, 'user_id');
+        return $this->hasMany(Image::class, 'image_id');
+    }
+
+    public function vote()
+    {
+        return $this->hasMany(Vote::class, 'vote_id');
     }
 }

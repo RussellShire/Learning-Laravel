@@ -1,12 +1,6 @@
 <script>
 export default {
     props: ['image'],
-
-    // data() {
-    //     return {
-    //         userName: '',
-    //     }
-    // },
 }
 </script>
 

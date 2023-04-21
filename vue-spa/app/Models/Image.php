@@ -16,4 +16,9 @@ class Image extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function vote()
+    {
+        return $this->hasMany(Vote::class, 'vote_id');
+    }
 }
