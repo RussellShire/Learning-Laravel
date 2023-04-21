@@ -31,19 +31,19 @@ class ListingController extends Controller
         return view('listings.create');
     }
 
-    // Show edit form
-    public function edit(Listing $listing)
-    {
-        return view('listings.edit', [
-            'listing' => $listing
-        ]);
-    }
-
     // Show manage form
     public function manage()
     {
         return view('listings.manage',
             ['listings' => auth()->user()->listings()->get() // Get all the logged-in users listings (via eloquent relationships)
+        ]);
+    }
+
+    // Show edit form
+    public function edit(Listing $listing)
+    {
+        return view('listings.edit', [
+            'listing' => $listing
         ]);
     }
 
