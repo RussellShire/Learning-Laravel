@@ -26,14 +26,14 @@ export default {
     },
 
     created() {
-        const fetchTestData = async () => {
+        const fetchImageData = async () => {
             const results = await fetch('/api/images')
             const data = await results.json()
             // console.log(data)
             this.images = data
         }
 
-        fetchTestData()
+       fetchImageData();
     },
 };
 </script>

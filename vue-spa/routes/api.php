@@ -2,6 +2,7 @@
 
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,9 +40,10 @@ Route::get('images', function() {
     return $images;
 });
 
-//Route::get('user/{image}', function(Image $image) {
-//    $user = $image->user;
-//
-//   return $user;
-//});
+Route::get('votes/{image}', function(Image $image) {
+   $votes = Vote::all()->where('image_id', $image->id);
+//   echo $votes;
+
+   return $votes;
+});
 

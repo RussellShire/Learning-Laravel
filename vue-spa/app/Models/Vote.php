@@ -13,11 +13,11 @@ class Vote extends Model
 
     public function image()
     {
-        return $this->hasMany(Image::class, 'image_id');
+        return $this->hasOne(Image::class, 'image_id');
     }
 
     public function user()
     {
-        return $this->hasMany(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
