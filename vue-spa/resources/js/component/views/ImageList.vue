@@ -30,10 +30,21 @@ export default {
             const results = await fetch('/api/images')
             const data = await results.json()
             // console.log(data)
-            this.images = data
+
+            const images = data
+
+            images.forEach(image => {
+                // console.log(image)
+                const votesArray = image['votes'].map(vote => vote['vote_score'])
+                const totalVotes = votesArray.reduce((partialSum, a) => partialSum + a, 0)
+
+                image.voteScore = totalVotes
+            })
+
+            this.images = images
         }
 
-       fetchImageData();
+        fetchImageData();
     },
 };
 </script>

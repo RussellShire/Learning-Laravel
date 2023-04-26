@@ -35,24 +35,15 @@ Route::get('users', function() {
 });
 
 Route::get('images', function() {
-    $images = Image::with('user')->get();
+    $images = Image::with(['user', 'votes'])->get();
 
     return $images;
 });
 
-// Unsuccessful attempt at using an eloquent relationship to load the many votes on each image
-//Route::get('images', function(Image $image) {
-//    $images = Image::with(['user', 'vote' => function ($query) use ($image) {
-//        $query->where('image_id', $image->id);
-//    }])->get();
-////    echo $images;
-//    return $images;
-//});
-
 Route::get('votes/{image}', function(Image $image) {
-   $votes = Vote::all()->where('image_id', $image->id);
-//   echo $votes;
-
-   return $votes;
+    $votes = Vote::all()->where('image_id', $image->id);
+//    $votes = $votes[0];
+//    print_r($votes[10]);
+    return $votes;
 });
 
