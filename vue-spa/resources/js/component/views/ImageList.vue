@@ -4,6 +4,7 @@
     <h1 class="text-xl text-red-500">Image List</h1>
     <p class="text-xs">This is a list of imagery dynamically pulled from the database</p>
 
+    <!--  Looping over images in order of vote score and sending to image card component  -->
     <ul v-for="(image, index) in images" :key="index">
         <li>
             <image-card :image="image" />
@@ -28,19 +29,24 @@ export default {
     created() {
         const fetchImageData = async () => {
             const results = await fetch('/api/images')
-            const data = await results.json()
-            // console.log(data)
+            const images = await results.json()
 
-            const images = data
-
+            // looping over each image
             images.forEach(image => {
-                // console.log(image)
+                // Creating an array of all the votes on an image
                 const votesArray = image['votes'].map(vote => vote['vote_score'])
+
+                // Adding up all the votes on an image
                 const totalVotes = votesArray.reduce((partialSum, a) => partialSum + a, 0)
 
+                // Adding a new property to the image object
                 image.voteScore = totalVotes
             })
 
+            // Sorting by Vote Score desc
+            images.sort(function(a, b){return b.voteScore - a.voteScore});
+
+            // Assigning to Vue.js Data
             this.images = images
         }
 
