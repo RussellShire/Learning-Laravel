@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios';
 export default {
     props: ['image'],
     data() {
@@ -7,6 +8,8 @@ export default {
                 'image_id': this.image['id'],
                 'user_id': 1,
                 'vote_score': 1,
+                // CRSF linked to meta info on app.blade.php
+                '_token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
         }
     },
@@ -14,11 +17,10 @@ export default {
     methods: {
         saveVote(vote) {
             vote === "up" ? this.vote['vote_score'] = 1 : this.vote['vote_score'] = -1
-
-            console.log("done", this.vote)
-
-            // Do Vue 3 Post request here using fetch
-            // https://jasonwatmore.com/vue-3-http-post-request-examples
+            
+            axios.post('/vote', this.vote)
+                .then(response => console.log(response))
+                .catch(error => console.log(error))
         },
     },
 }
@@ -33,7 +35,9 @@ export default {
             <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
         </div>
         <div>
-            <button @click="saveVote('up')">^</button>
+            <form @submit.prevent="saveVote('up')">
+                <button type="submit">^</button>
+            </form>
             <button @click="saveVote('down')">v</button>
         </div>
     </div>

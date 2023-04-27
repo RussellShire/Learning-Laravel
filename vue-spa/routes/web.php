@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VoteController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 // store votes
-Route::post('/vote', [VoteController::class, 'store']);
+Route::post('/vote',
+    [VoteController::class, 'store']
+//    function (Request $request) {
+//        dd($request->all());
+////        echo "/vote route";
+//    }
+
+);
 // needs middleware
 // form needs auth, currently hardcoded as user_id 1
 
 Route::get('/{any}', function () {
+//    echo "hello";
     return view('app');
 })->where('any', '.*'); // Allows literally anything, so /blah/blah is possible

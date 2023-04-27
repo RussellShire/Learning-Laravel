@@ -28,6 +28,7 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
+
         $formFields = $request->validate([
             'user_id' => 'required',
             'image_id' => 'required',
