@@ -17,6 +17,11 @@ export default {
         saveVote(vote) {
             vote === "up" ? this.vote['vote_score'] = 1 : this.vote['vote_score'] = -1
 
+            // Updating the live vote for the user
+            // TODO: Change this to be emited to the parent component so we can change order live too
+            // TODO: See this guide https://michaelnthiessen.com/pass-function-as-prop/
+            this.image.voteScore += this.vote['vote_score']
+
             const options = {
                 method: "POST",
                 mode: "cors",
