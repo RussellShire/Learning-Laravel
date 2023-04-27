@@ -1,5 +1,4 @@
 <script>
-import axios from 'axios';
 export default {
     props: ['image'],
     data() {
@@ -17,10 +16,21 @@ export default {
     methods: {
         saveVote(vote) {
             vote === "up" ? this.vote['vote_score'] = 1 : this.vote['vote_score'] = -1
-            
-            axios.post('/vote', this.vote)
-                .then(response => console.log(response))
-                .catch(error => console.log(error))
+
+            const options = {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(this.vote)
+            }
+            async function postVote() {
+                // targeting /vote on web route
+                await fetch('/vote', options)
+            }
+
+            postVote()
         },
     },
 }
