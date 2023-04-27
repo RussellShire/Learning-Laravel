@@ -28,7 +28,20 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'user_id' => 'required',
+            'image_id' => 'required',
+            'vote_score' => 'required',
+        ]);
+
+        // Adding the id of the logged-in user to the Listing
+        // currently disabled due to no login implementation
+//        $formFields['user_id'] = auth()->id();
+
+        Vote::create($formFields); // actually submit to the database
+
+        // not sure if no redirect required?
+        return redirect('/image-list');
     }
 
     /**

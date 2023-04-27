@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\VoteController;
 use App\Models\Image;
 use App\Models\User;
-use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,16 +34,9 @@ Route::get('users', function() {
     return $users;
 });
 
+// get images and votes
 Route::get('images', function() {
     $images = Image::with(['user', 'votes'])->get();
 
     return $images;
 });
-
-Route::get('votes/{image}', function(Image $image) {
-    $votes = Vote::all()->where('image_id', $image->id);
-//    $votes = $votes[0];
-//    print_r($votes[10]);
-    return $votes;
-});
-
