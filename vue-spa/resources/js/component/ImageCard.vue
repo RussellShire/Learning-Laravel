@@ -4,20 +4,24 @@ export default {
     data() {
         return {
             'vote': {
-                'image_id': '',
-                'user_id': '',
-                'vote_score': '',
-            }
+                'image_id': this.image['id'],
+                'user_id': 1,
+                'vote_score': 1,
+            },
         }
     },
 
     methods: {
-        saveData() {
-            console.log("done")
-        }
+        saveVote(vote) {
+            vote === "up" ? this.vote['vote_score'] = 1 : this.vote['vote_score'] = -1
+
+            console.log("done", this.vote)
+
+            // Do Vue 3 Post request here using fetch
+            // https://jasonwatmore.com/vue-3-http-post-request-examples
+        },
     },
 }
-
 </script>
 
 <template>
@@ -29,19 +33,8 @@ export default {
             <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
         </div>
         <div>
-            <form @submit.prevent="saveData()">
-                <input type="hidden" name="vote_score" v-model="vote.vote_score" />
-                <input type="hidden" name="image_id" v-model="vote.image_id" />
-                <input type="hidden" name="user_id" v-model="vote.user_id" />
-                <button type="submit">^</button>
-            </form>
-
-<!--            <form method="POST" action="/vote">-->
-<!--                <input type="hidden" name="vote_score" v-model="vote.vote_score" value="1"/>-->
-<!--                <input type="hidden" name="image_id" v-model="vote.image_id" value="{{ this.image['id'] }}"/>-->
-<!--                <input type="hidden" name="user_id" v-model="vote.user_id" value="-1"/>-->
-<!--                <button type="submit">v</button>-->
-<!--            </form>-->
+            <button @click="saveVote('up')">^</button>
+            <button @click="saveVote('down')">v</button>
         </div>
     </div>
 </template>
