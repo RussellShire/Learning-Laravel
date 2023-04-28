@@ -45,16 +45,17 @@ export default {
 </script>
 
 <template>
-    <div class="">
+    <div class="flex-col p-4">
         <img :src="image['image_path']" :alt="image['title']">
-        <div class="flex">
+
+        <div class="flex justify-between">
+            <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
             <p class="text-xl"><strong>Title:</strong> {{ image['title'] }}</p>
             <p class="text-xl"><strong>Posted by:</strong> {{ image['user']['name'] }}</p>
-            <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
         </div>
         <div>
-            <button @click="saveVote('up')">^</button>
-            <button @click="saveVote('down')">v</button>
+            <button @click="saveVote('up')"><i class="fa-solid fa-arrow-up"></i></button>
+            <button @click="saveVote('down')"><i class="fa-solid fa-arrow-down"></i></button>
         </div>
     </div>
 </template>
