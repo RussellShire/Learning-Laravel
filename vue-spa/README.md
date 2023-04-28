@@ -5,6 +5,13 @@ A single page application with a Laravel backend and Vue / Vue Router frontend.
 Following Laracasts: https://laracasts.com/series/laravel-vue-and-spas/
 with this set-up guide for 2022: https://blog.logrocket.com/create-single-page-app-laravel-and-vue/
 
+## ToDo:
+- Fix Tailwind
+- Add styling
+- Add login and auth
+- Limit votes to one per user per image
+- Options to composition API
+
 ## Set up
 
 - npm install
@@ -14,8 +21,6 @@ with this set-up guide for 2022: https://blog.logrocket.com/create-single-page-a
 - php artisan sail:install
 - npm install -D tailwindcss postcss autoprefixer
 - npx tailwindcss init -p
-
-[//]: # (- npm install axios)
 
 ## Usage
 

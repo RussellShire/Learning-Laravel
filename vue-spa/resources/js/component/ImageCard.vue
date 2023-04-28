@@ -1,6 +1,8 @@
 <script>
 export default {
     props: ['image'],
+    emits: ['submitVote'],
+
     data() {
         return {
             'vote': {
@@ -18,9 +20,10 @@ export default {
             vote === "up" ? this.vote['vote_score'] = 1 : this.vote['vote_score'] = -1
 
             // Updating the live vote for the user
-            // TODO: Change this to be emited to the parent component so we can change order live too
-            // TODO: See this guide https://michaelnthiessen.com/pass-function-as-prop/
             this.image.voteScore += this.vote['vote_score']
+
+            // Emit an event to the parent component that will resort the list
+            this.$emit('submitVote')
 
             const options = {
                 method: "POST",
@@ -50,9 +53,7 @@ export default {
             <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
         </div>
         <div>
-            <form @submit.prevent="saveVote('up')">
-                <button type="submit">^</button>
-            </form>
+            <button @click="saveVote('up')">^</button>
             <button @click="saveVote('down')">v</button>
         </div>
     </div>

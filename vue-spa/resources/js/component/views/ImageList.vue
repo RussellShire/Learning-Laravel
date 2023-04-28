@@ -1,18 +1,3 @@
-
-
-<template>
-    <h1 class="text-xl text-red-500">Image List</h1>
-    <p class="text-xs">This is a list of imagery dynamically pulled from the database</p>
-
-    <!--  Looping over images in order of vote score and sending to image card component  -->
-    <ul v-for="(image, index) in images" :key="index">
-        <li>
-            <image-card :image="image" />
-        </li>
-    </ul>
-
-</template>
-
 <script>
 import ImageCard from '../ImageCard.vue';
 export default {
@@ -52,5 +37,26 @@ export default {
 
         fetchImageData();
     },
+
+    methods: {
+        updateView() {
+            this.images.sort(function(a, b){return b.voteScore - a.voteScore});
+        }
+    }
 };
 </script>
+
+
+<template>
+    <h1 class="text-xl text-red-500">Image List</h1>
+    <p class="text-xs">This is a list of imagery dynamically pulled from the database</p>
+
+    <!--  Looping over images in order of vote score and sending to image card component  -->
+    <ul v-for="(image, index) in images" :key="index">
+        <li>
+            <image-card :image="image" @submit-vote="updateView" />
+        </li>
+    </ul>
+
+</template>
+
