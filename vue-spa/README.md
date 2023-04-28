@@ -11,6 +11,7 @@ with this set-up guide for 2022: https://blog.logrocket.com/create-single-page-a
 - Add login and auth
 - Limit votes to one per user per image
 - Options to composition API
+- Lazyload imagery
 
 ## Set up
 
