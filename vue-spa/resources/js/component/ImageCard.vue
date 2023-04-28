@@ -45,17 +45,23 @@ export default {
 </script>
 
 <template>
-    <div class="flex-col p-4">
-        <img :src="image['image_path']" :alt="image['title']">
-
-        <div class="flex justify-between">
-            <p class="text-xl"><strong>Votes:</strong> {{ image['voteScore'] }}</p>
-            <p class="text-xl"><strong>Title:</strong> {{ image['title'] }}</p>
-            <p class="text-xl"><strong>Posted by:</strong> {{ image['user']['name'] }}</p>
-        </div>
-        <div>
+    <div class="flex">
+        <div class="flex flex-col items-center w-1/12 mx-0 my-2">
             <button @click="saveVote('up')"><i class="fa-solid fa-arrow-up"></i></button>
+
+            <p class="text-xl">{{ image['voteScore'] }}</p>
+
             <button @click="saveVote('down')"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+
+        <div class="flex flex-col w-11/12">
+
+            <img class="w-max" :src="image['image_path']" :alt="image['title']">
+
+            <div class="flex flex-wrap justify-between px-1 mb-6">
+                <p class="text-xl"><strong>Title:</strong> {{ image['title'] }}</p>
+                <p class="text-xl"><strong>Posted by:</strong> {{ image['user']['name'] }}</p>
+            </div>
         </div>
     </div>
 </template>

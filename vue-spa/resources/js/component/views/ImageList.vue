@@ -49,14 +49,17 @@ export default {
 
 <template>
     <h1 class="text-xl text-red-500">Image List</h1>
-    <p class="text-xs">This is a list of imagery dynamically pulled from the database</p>
+    <p class="text-xs">This is a list of imagery dynamically pulled from the database. You can vote up or down on images and the order will change.</p>
 
-    <!--  Looping over images in order of vote score and sending to image card component  -->
-    <ul v-for="(image, index) in images" :key="index" class="flex flex-nowrap">
-        <li>
-            <image-card :image="image" @submit-vote="updateView" />
-        </li>
-    </ul>
+    <div class="flex flex-col items-center">
+        <!--  Looping over images in order of vote score and sending to image card component  -->
+        <ul v-for="(image, index) in images" :key="index" class="flex w-1/3">
+            <li>
+                <image-card :image="image" @submit-vote="updateView" />
+            </li>
+        </ul>
+    </div>
+
 
 </template>
 
